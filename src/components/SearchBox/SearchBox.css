@@ -1,6 +1,3 @@
-.search-box {
-}
-
 .search-box__form {
     display: flex;
 }
@@ -26,13 +23,13 @@
     padding: 5px 10px;
     border: 1px solid rgba(0, 8, 7, .5);
     background-color: #FFEEDB;
-    transition: all 0.3s linear;
+    transition: all 0.2s linear;
 }
 
-.search-box__form-submit:hover {
+.search-box__form-submit:hover:not(:disabled) {
     opacity: 0.8;
     cursor: pointer;
-    transition: all 0.3s linear;
+    transition: all 0.2s linear;
     color: #FFEEDB;
     background-color: rgba(0, 8, 7);
 }
