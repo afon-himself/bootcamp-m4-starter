@@ -1,7 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import MainPage from './pages/MainPage';
-import ListPage from './pages/ListPage';
+import MainPage from './pages/MainPage/MainPage';
+import ListPage from './pages/ListPage/ListPage';
+
+import './reset.css';
+import './common.css';
 
 class App extends React.Component {
   render() {
