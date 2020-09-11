@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './MainPage.css';
 import Header from '../../components/Header/Header';
 import SearchBox from '../../components/SearchBox/SearchBox';
+import Movies from '../../components/Movies/Movies';
 
 class MainPage extends Component {
     render() { 
@@ -13,7 +14,9 @@ class MainPage extends Component {
                         <div className="main-page__search-box">
                             <SearchBox />
                         </div>
-                        <div className="main-page__movies" />
+                        <div className="main-page__movies">
+                            <Movies />
+                        </div>
                     </section>
                     <aside className="main-page__favorites">
                     </aside>

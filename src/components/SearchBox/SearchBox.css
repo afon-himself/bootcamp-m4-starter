@@ -13,7 +13,7 @@
     display: block;
     margin-top: 5px;
     width: 300px;
-    font-size: 16px;
+    font-size: 14px;
     padding: 5px 10px;
     border: 1px solid rgba(0, 8, 7, .5);
 }
@@ -21,17 +21,18 @@
 .search-box__form-submit {
     margin-top: 17px;
     padding: 5px 10px;
-    border: 1px solid rgba(0, 8, 7, .5);
-    background-color: #FFEEDB;
+    border: none;
     transition: all 0.2s linear;
+    color: #FFEEDB;
+    background-color: rgba(0, 8, 7);
 }
 
 .search-box__form-submit:hover:not(:disabled) {
     opacity: 0.8;
     cursor: pointer;
     transition: all 0.2s linear;
-    color: #FFEEDB;
-    background-color: rgba(0, 8, 7);
+    background-color: #FFEEDB;
+    color: rgba(0, 8, 7);
 }
 
 .search-box__form-submit:disabled {

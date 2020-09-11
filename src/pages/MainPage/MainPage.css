@@ -1,7 +1,11 @@
 .main-page__content {
-    padding: 20px calc(50% - 500px);
+    padding: 42px calc(50% - 500px);
 }
 
 .main-page__main-section {
     padding-left: 40px;
+}
+
+.main-page__search-box {
+    margin-bottom: 35px;
 }
