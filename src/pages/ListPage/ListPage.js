@@ -24,7 +24,7 @@ class ListPage extends Component {
                     {this.state.movies.map((item) => {
                         return (
                             <li key={item.imdbID}>
-                                <a href="https://www.imdb.com/title/tt0068646/" target="_blank">{item.title} ({item.year})</a>
+                                <a href="https://www.imdb.com/title/tt0068646/" target="_blank" rel="noopener noreferrer">{item.title} ({item.year})</a>
                             </li>
                         );
                     })}
