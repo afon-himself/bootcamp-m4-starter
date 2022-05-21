@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './SearchBox.css';
 
+import store from '../../redux/store';
+import getData from '../../redux/action';
+
 class SearchBox extends Component {
     state = {
         searchLine: ''
@@ -10,6 +13,8 @@ class SearchBox extends Component {
     }
     searchBoxSubmitHandler = (e) => {
         e.preventDefault();
+
+        store.dispatch(getData(this.state.searchLine));
     }
     render() {
         const { searchLine } = this.state;
@@ -18,12 +23,12 @@ class SearchBox extends Component {
             <div className="search-box">
                 <form className="search-box__form" onSubmit={this.searchBoxSubmitHandler}>
                     <label className="search-box__form-label">
-                        Искать фильм по названию:
+                        Search by name:
                         <input
                             value={searchLine}
                             type="text"
                             className="search-box__form-input"
-                            placeholder="Например, Shawshank Redemption"
+                            placeholder="For example, Shawshank Redemption"
                             onChange={this.searchLineChangeHandler}
                         />
                     </label>
@@ -32,7 +37,7 @@ class SearchBox extends Component {
                         className="search-box__form-submit"
                         disabled={!searchLine}
                     >
-                        Искать
+                        Search
                     </button>
                 </form>
             </div>
