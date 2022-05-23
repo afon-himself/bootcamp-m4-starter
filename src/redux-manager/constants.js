@@ -1,0 +1,8 @@
+export const ADD_MOVIE = "ADD_MOVIE";
+export const DELETE_MOVIE = "DELETE_MOVIE";
+export const MOVIES_DATA = "MOVIES_DATA";
+export const SAVE_IN_LIST = "SAVE_IN_LIST";
+export const SAVE_MOVIE = "SAVE_MOVIE";
+export const GET_STAR_MOVIES_ID = "GET_STAR_MOVIES_ID";
+export const SAVE_FAVORIT_LIST_ID = "SAVE_FAVORIT_LIST_ID";
+export const SAVE_ALL_STAR_MOVIES = "SAVE_ALL_STAR_MOVIES";
