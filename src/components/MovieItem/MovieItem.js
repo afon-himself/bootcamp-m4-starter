@@ -11,7 +11,7 @@ class MovieItem extends Component {
     click = (imdbID) => {
         if (!this.state.isInFavorites) {
             store.dispatch({
-                type: 'ADD_MOVIE_TO_LIST',
+                type: 'ADD_MOVIE_TO_FAVORITES',
                 payload: {
                     imdbID: imdbID
                 }

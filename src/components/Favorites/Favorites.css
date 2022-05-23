@@ -26,7 +26,12 @@
     transition: all 0.2s linear;
 }
 
-.favorites__save:hover {
+.favorites__save:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.favorites__save:hover:not(:disabled) {
     cursor: pointer;
     opacity: 0.9;
     transition: all 0.2s linear;

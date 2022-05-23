@@ -3,31 +3,44 @@ import './ListPage.css';
 
 class ListPage extends Component {
     state = {
-        movies: [
-            { title: 'The Godfather', year: 1972, imdbID: 'tt0068646' }
-        ]
+        list: {
+            id: -1,
+            title: '',
+            movies: []
+        }
     }
+
     componentDidMount() {
-        const id = this.props.match.params;
-        const apikey = "c089abf1";
-        console.log(id);
-        fetch(`http://www.omdbapi.com/?i=${this.state.movies[0].imdbID}&apikey=${apikey}`)
-        .then(res => res.json()).then(data => console.log(data));
+        // const apikey = "c089abf1";
         // TODO: запрос к сервер на получение списка
         // TODO: запросы к серверу по всем imdbID
+        const params = this.props.match.params;
+        let lists = JSON.parse(localStorage.getItem('lists'));
+        if (!Array.isArray(lists)) lists = [lists];
+        console.log(lists);
+        const list = lists.find(list => list.id === +params.id);
+        
+        this.setState({ list: list });
     }
-    render() { 
+
+    render() {
         return (
             <div className="list-page">
-                <h1 className="list-page__title">My List</h1>
+                <h1 className="list-page__title">{this.state.list ? this.state.list.title : "My List"}</h1>
                 <ul>
-                    {this.state.movies.map((item) => {
+                    {
+                        this.state.list && this.state.list.movies?
+                        this.state.list.movies.map((movie) => {
                         return (
-                            <li key={item.imdbID}>
-                                <a href="https://www.imdb.com/title/tt0068646/" target="_blank" rel="noopener noreferrer">{item.title} ({item.year})</a>
+                            <li key={movie.imdbID}>
+                                <a href={`https://www.imdb.com/title/${movie.imdbID}/`} target="_blank" rel="noopener noreferrer">
+                                    {movie.title} ({movie.year})
+                                </a>
                             </li>
                         );
-                    })}
+                    })
+                    :null
+                    }
                 </ul>
             </div>
         );
