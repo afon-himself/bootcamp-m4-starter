@@ -1,37 +1,24 @@
-import React, { Component } from 'react';
-import MovieItem from '../MovieItem/MovieItem';
-import './Movies.css';
+import React from "react";
+import MovieItem from "../MovieItem/MovieItem";
+import { useSelector } from "react-redux";
+import "./Movies.css";
+import { getCartMoviesSelector } from "../../redux-manager/Movies/selector";
 
-class Movies extends Component {
-    state = { 
-        movies: [
-            {
-                imdbID: 'tt3896198',
-                title: "Guardians of the Galaxy Vol. 2",
-                year: 2017,
-                poster: "https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"
+function Movies() {
+  const movies = useSelector(getCartMoviesSelector);
 
-            },
-            {
-                imdbID: 'tt0068646',
-                title: "The Godfather",
-                year: 1972,
-                poster: "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
-
-            }
-        ]
-    }
-    render() { 
-        return ( 
-            <ul className="movies">
-                {this.state.movies.map((movie) => (
-                    <li className="movies__item" key={movie.imdbID}>
-                        <MovieItem {...movie} />
-                    </li>
-                ))}
-            </ul>
-        );
-    }
+  return (
+    <ul className="movies">
+      {movies &&
+        movies.map((moviesList) => {
+          return (
+            <li className="movies__item" key={moviesList.imdbID}>
+              <MovieItem {...moviesList} />
+            </li>
+          );
+        })}
+    </ul>
+  );
 }
- 
+
 export default Movies;
