@@ -9,7 +9,7 @@ class MovieItem extends Component {
     }
 
     click = (imdbID) => {
-        if (!this.state.isInFavorites) {
+        if (!this.state.isInFavorites && !store.getState().favorites.map(favorite => favorite.imdbID).includes(this.props.imdbID)) {
             store.dispatch({
                 type: 'ADD_MOVIE_TO_FAVORITES',
                 payload: {

@@ -50,6 +50,7 @@ function reducer(state = initialState, action) {
 
         case 'ADD_LIST_TO_LISTS':
             clone = JSON.parse(JSON.stringify(state));
+            clone.favorites = [];
             const list = {
                 id: action.payload.id,
                 title: action.payload.title,
