@@ -15,7 +15,7 @@ class Favorites extends Component {
     state = {
         id: store.getState().lists.length,
         title: 'My List',
-        favorites: [],
+        movies: [],
         hasBeenSaved: false
     }
 
@@ -24,8 +24,12 @@ class Favorites extends Component {
             const state = store.getState();
             if (!state.favorites) return;
 
-            this.setState({ favorites: state.favorites });
+            this.setState({ movies: state.favorites });
         });
+    }
+
+    titleChange = event => {
+        this.setState({ title: event.target.value });
     }
 
     deleteFavClick = (imdbID) => {
@@ -37,20 +41,24 @@ class Favorites extends Component {
         });
     }
 
-    saveClick = (favorites) => {
+    saveClick = (movies) => {
         this.setState({ hasBeenSaved: true });
+        fetch('https://acb-api.algoritmika.org/api/movies/list', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+                'title': this.state.title,
+                'movies': movies.map(movie => movie.imdbID)
+            }
+        }).then(res => res.json()).then(data => console.log(data));
         store.dispatch({
             type: 'ADD_LIST_TO_LISTS',
             payload: {
                 id: this.state.id,
                 title: this.state.title,
-                movies: favorites
+                movies: movies
             }
         });
-    }
-
-    titleChange = event => {
-        this.setState({ title: event.target.value });
     }
 
     render() { 
@@ -60,15 +68,15 @@ class Favorites extends Component {
                 <ul className="favorites__list">
                     {
                         this.state?
-                            this.state.favorites.map(favorite => {
+                            this.state.movies.map(movie => {
                                 return (
-                                    <li key={favorite.imdbID}>
-                                        {favorite.title} ({favorite.year})
+                                    <li key={movie.imdbID}>
+                                        {movie.title} ({movie.year})
                                         <button
                                             type="button"
-                                            onClick={_ => {this.deleteFavClick(favorite.imdbID)}}
+                                            onClick={_ => {this.deleteFavClick(movie.imdbID)}}
                                         >
-                                            x
+                                            X
                                         </button>
                                     </li>
                                 );
@@ -81,8 +89,8 @@ class Favorites extends Component {
                     !this.state.hasBeenSaved?
                         <button 
                             type="button" className="favorites__save"
-                            onClick={_ => {this.saveClick(this.state.favorites)}}
-                            disabled={this.state.favorites.length === 0}
+                            onClick={_ => {this.saveClick(this.state.movies)}}
+                            disabled={this.state.movies.length === 0}
                         >
                             Save the list
                         </button>

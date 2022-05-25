@@ -3,7 +3,7 @@ import store from '../redux/store';
 const getData = (searchLine) => {
     return async _ => {
         try {
-            const data = await fetch(`http://www.omdbapi.com/?s=${searchLine}&apikey=c089abf1`)
+            const data = await fetch(`https://www.omdbapi.com/?s=${searchLine}&apikey=c089abf1`)
             .then(res => res.json());
             
             let movies = [];

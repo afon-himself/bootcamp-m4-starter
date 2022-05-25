@@ -17,7 +17,6 @@ class ListPage extends Component {
         const params = this.props.match.params;
         let lists = JSON.parse(localStorage.getItem('lists'));
         if (!Array.isArray(lists)) lists = [lists];
-        console.log(lists);
         const list = lists.find(list => list.id === +params.id);
         
         this.setState({ list: list });

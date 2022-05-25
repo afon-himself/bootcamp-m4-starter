@@ -6,7 +6,7 @@ import Movies from '../../components/Movies/Movies';
 import Favorites from '../../components/Favorites/Favorites';
 
 class MainPage extends Component {
-    render() { 
+    render() {
         return (
             <div className="main-page">
                 <Header />
