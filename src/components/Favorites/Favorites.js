@@ -70,39 +70,40 @@ class Favorites extends Component {
                     onChange={this.titleChange}
                     disabled={this.state.hasBeenSaved}
                 />
-                <ul className="favorites__list">
-                    {
-                        this.state?
-                            this.state.movies.map(movie => {
-                                return (
-                                    <li key={movie.imdbID}>
-                                        {movie.title} ({movie.year})
-                                        <button
-                                            type="button"
-                                            onClick={_ => {this.deleteFavClick(movie.imdbID)}}
-                                        >
-                                            X
-                                        </button>
-                                    </li>
-                                );
-                            })
-                            :
-                            null
-                    }
-                </ul>
                 {
                     !this.state.hasBeenSaved?
-                        <button 
-                            type="button" className="favorites__save"
-                            onClick={_ => {this.saveClick(this.state.movies)}}
-                            disabled={this.state.movies.length === 0 || !this.state.title}
-                        >
-                            Save the list
-                        </button>
+                        <>
+                            <ul className="favorites__list">
+                                {
+                                    this.state?
+                                        this.state.movies.map(movie => {
+                                            return (
+                                                <li key={movie.imdbID}>
+                                                    {movie.title} ({movie.year})
+                                                    <button
+                                                        type="button"
+                                                        onClick={_ => {this.deleteFavClick(movie.imdbID)}}
+                                                    >
+                                                        X
+                                                    </button>
+                                                </li>
+                                            );
+                                        })
+                                        :
+                                        null
+                                }
+                            </ul>
+                            <button 
+                                type="button" className="favorites__save"
+                                onClick={_ => {this.saveClick(this.state.movies)}}
+                                disabled={this.state.movies.length === 0 || !this.state.title}
+                            >
+                                Save the list
+                            </button>
+                        </>
                         :
                         <Link to={`/list/${this.state.id}`} target="_blank">Go to the link</Link>
                 }
-                
             </div>
         );
     }
