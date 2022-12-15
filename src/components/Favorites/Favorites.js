@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { removeMovieFromFavoriteList, postList } from '../../redux/actions/actions';
+import { connect } from 'react-redux';
 import './Favorites.css';
 
 
@@ -46,7 +49,6 @@ function Favorites(props) {
                 onChange={favoriteChangeHandler}
                 onClick={favoriteChangeHandler}
                 placeholder="Введите название списка"
-                disabled={!props.favoriteList.length}
             />
             <ul className="favorites__list">
                 {props.favoriteList.map((item) => {

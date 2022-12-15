@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./MovieItem.css";
-import { addFavoriteList } from "../../redux/actions";
+import { addFavoriteList } from "../../redux/actions/actions";
 import { connect } from "react-redux";
 
-function MovieItem({ Title, Year, Poster, imdbID }) {
+function MovieItem({ Title, Year, Poster, imdbID, favoriteList, addFavoriteList }) {
     const ifIdInFavorites = (imdbID) => {
-        const active = this.props.favoriteList.find((item) => {
+        const active = favoriteList.find((item) => {
             return item.imdbID === imdbID;
         });
         if (active) {
@@ -23,12 +23,12 @@ function MovieItem({ Title, Year, Poster, imdbID }) {
                 <button
                     type="button"
                     className="movie-item__add-button"
-                    onClick={() => {
-                        this.props.addFavoriteList(imdbID);
+                    onClick={(e) => {
+                        addFavoriteList(imdbID);
                     }}
                     disabled={ifIdInFavorites(imdbID)}
                 >
-                    {ifIdInFavorites(imdbID) ? `✓ Добавлено` : "Добавить в список"}
+                    {ifIdInFavorites(imdbID) ? `Добавлено` : "Добавить в список"}
                 </button>
             </div>
         </article>
@@ -40,6 +40,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addFavoriteList: (imdbID) => {
             dispatch(addFavoriteList(imdbID));
+
         },
     };
 };
