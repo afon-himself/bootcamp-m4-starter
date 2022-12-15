@@ -5,28 +5,10 @@ import './Favorites.css';
 function Favorites(props) {
     const [title, setTitle] = useState('Новый список');
     const [isSbm, setIsSbm] = useState(false);
-    const [movies, setMovies] = useState([
-        { imdbID: 'tt0068646', title: 'The Godfather', year: 1972 }
-    ])
 
-    const favoriteChangeHandler = (e) => {
-        this.setState({ title: e.target.value });
-        if (document.querySelector(`.${e.target.className}`).value.length > 0) {
-            document.querySelector(`.${e.target.parentElement.className}`).querySelector(".favorites__save").style.backgroundColor = "#496ddb";
-            document.querySelector(`.${e.target.parentElement.className}`).querySelector(".favorites__save").style.cursor = "pointer";
-        }
-        if (document.querySelector(`.${e.target.className}`).value.length === 0) {
-            document.querySelector(`.${e.target.parentElement.className}`).querySelector(".favorites__save").style.backgroundColor = "gray";
-            document.querySelector(`.${e.target.parentElement.className}`).querySelector(".favorites__save").style.cursor = "not-allowed";
-        }
-        if (document.querySelectorAll(`.${e.target.className}`)[1]) {
-            document.querySelector(`.main-page__favorites`).querySelector(".favorites__save").style.backgroundColor = "#496ddb";
-            document.querySelector(`.main-page__favorites`).querySelector(".favorites__save").style.cursor = "pointer";
-        }
-        if (document.querySelectorAll(`.${e.target.className}`)[1].value.length === 0) {
-            document.querySelector(`.main-page__favorites`).querySelector(".favorites__save").style.backgroundColor = "gray";
-            document.querySelector(`.main-page__favorites`).querySelector(".favorites__save").style.cursor = "not-allowed";
-        }
+    const saveListHandler = () => {
+        setIsSbm(true);
+        props.postList(this.state.title, getImdbIDArray());
     };
 
     const getImdbIDArray = () => {
@@ -36,10 +18,26 @@ function Favorites(props) {
         return favoritesIDArray;
     };
 
-    const saveListHandler = () => {
-        setIsSbm(true);
-        props.postList(this.state.title, getImdbIDArray());
+    const favoriteChangeHandler = (e) => {
+        setTitle(e.target.value);
+        if (document.querySelector(`.${e.target.className}`).value.length === 0) {
+            document.querySelector(`.${e.target.parentElement.className}`).querySelector(".favorites__save").style.backgroundColor = "gray";
+            document.querySelector(`.${e.target.parentElemenst.className}`).querySelector(".favorites__save").style.cursor = "not-allowed";
+        }
+        if (document.querySelector(`.${e.target.className}`).value.length > 0) {
+            document.querySelector(`.${e.target.parentElement.className}`).querySelector(".favorites__save").style.backgroundColor = "#496ddb";
+            document.querySelector(`.${e.target.parentElement.className}`).querySelector(".favorites__save").style.cursor = "pointer";
+        }
+        if (document.querySelectorAll(`.${e.target.className}`)[1].value.length === 0) {
+            document.querySelector(`.main-page__favorites`).querySelector(".favorites__save").style.backgroundColor = "gray";
+            document.querySelector(`.main-page__favorites`).querySelector(".favorites__save").style.cursor = "not-allowed";
+        }
+        if (document.querySelectorAll(`.${e.target.className}`)[1]) {
+            document.querySelector(`.main-page__favorites`).querySelector(".favorites__save").style.backgroundColor = "#496ddb";
+            document.querySelector(`.main-page__favorites`).querySelector(".favorites__save").style.cursor = "pointer";
+        }
     };
+
     return (
         <div className="favorites">
             <input
