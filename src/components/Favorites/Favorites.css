@@ -2,6 +2,7 @@
     box-sizing: border-box;
     border: 1px solid rgba(0, 8, 7);
     padding: 30px 20px;
+    width: 100%;
 }
 
 .favorites__name {
@@ -30,4 +31,33 @@
     cursor: pointer;
     opacity: 0.9;
     transition: all 0.2s linear;
+}
+
+.favorites__list li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.favorites__save:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.fav_button {
+    margin-left: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+@media screen and (max-width: 925px) {
+    .favorites {
+        width: 106%;
+    }    
+}
+
+@media screen and (max-width: 455px) {
+    .favorites {
+        width: 114%;
+    }    
 }

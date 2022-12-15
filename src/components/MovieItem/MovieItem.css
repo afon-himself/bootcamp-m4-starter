@@ -29,3 +29,35 @@
     opacity: 0.9;
     transition: all 0.2s linear;
 }
+@media screen and (max-width: 925px) {
+    .movie-item {
+      width: 100%;
+    }
+  }
+  
+  @media screen and (max-width: 455px) {
+    .movie-item {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .movie-item__title {
+      font-size: 18px;
+      width: 120px;
+    }
+  
+    .movie-item__poster {
+      height: 160px;
+      margin-bottom: 10px;
+      width: 120px;
+      margin-left: 21px;
+    }
+  
+    .movie-item__add-button {
+      width: 100%;
+      width: 120px;
+    }
+  }
+  
