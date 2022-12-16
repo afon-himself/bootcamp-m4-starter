@@ -9,13 +9,13 @@ const initialState = {
 
 function reducer(state = initialState, action) {
     switch (action.type) {
-        case "SEARCH_MOVIE":
+        case "MovieSearch":
             return {
                 ...state,
                 movies: action.payload.movies,
             };
 
-        case "ADD_FAVORITE_FILM":
+        case "AddFavFilm":
             const newState = { ...state };
             const id = action.payload.id;
             const match = newState.movies.find((item) => item.imdbID === id);
@@ -24,26 +24,26 @@ function reducer(state = initialState, action) {
             }
             return newState;
 
-        case "REMOVE_MOVIE_FROM_FAVORITE_LIST":
+        case "Movie list remove":
             const newFilms = state.favoriteList.filter(
                 (item) => item.imdbID !== action.payload.id
             );
             return { ...state, favoriteList: newFilms };
 
-        case "REGISTER_FAVORITES":
+        case "register":
             return {
                 ...state,
                 listID: action.payload.listID,
             };
 
-        case "GET_LIST_INTO_STATE":
+        case "List state":
             return {
                 ...state,
                 title: action.payload.title,
                 listMovies: action.payload.listMovies,
             };
 
-        case "GET_MOVIE_INFO_INTO_STATE":
+        case "Movie info":
             return {
                 ...state,
                 movieDetails: action.payload.movieDetails,

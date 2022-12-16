@@ -1,6 +1,15 @@
+export function searchMoveis(movies) {
+    return {
+        type: "MovieSearch",
+        payload: {
+        movies: movies,
+        },
+    };
+}
+
 export function addFavoriteList(id) {
     return {
-        type: "ADD_FAVORITE_FILM",
+        type: "AddFavFilm",
         payload: {
             id: id,
         },
@@ -10,28 +19,65 @@ export function addFavoriteList(id) {
 
 export function removeMovieFromFavoriteList(id) {
     return {
-        type: "REMOVE_MOVIE_FROM_FAVORITE_LIST",
+        type: "Movie list remove",
         payload: {
             id: id,
         },
     };
 }
 
-export function searchMoveis(movies) {
+
+export function registerFavoriteList(listID) {
     return {
-        type: "SEARCH_MOVIE",
+        type: "register",
         payload: {
-        movies: movies,
+            listID: listID,
         },
     };
 }
 
-export function registerFavoriteList(listID) {
+export function getListIntoState(title, movies) {
     return {
-        type: "REGISTER_FAVORITES",
+        type: "List state",
         payload: {
-            listID: listID,
+            title: title,
+            listMovies: movies,
         },
+    };
+}
+
+export function getMovieInfoToState(movieDetails) {
+    return {
+        type: "Movie info",
+        payload: {
+            movieDetails: movieDetails,
+        },
+    };
+}
+
+export function getMovieInfoByImdbID(movies) {
+    return function (dispatch) {
+        let movieDetailsArray = [];
+        movies.forEach((e) => {
+            fetch(`http://www.omdbapi.com/?i=${e}&apikey=8fa5bc5d`)
+            .then((res) => res.json())
+            .then((data) => {
+                movieDetailsArray = [...movieDetailsArray, { ...data }];
+                dispatch(getMovieInfoToState(movieDetailsArray));
+            })
+            .catch((err) => console.log(err));
+        });
+    };
+}
+
+export function fetchMovies(name) {
+    return function (dispatch) {
+        fetch(`http://www.omdbapi.com/?s=${name}&apikey=8fa5bc5d`)
+        .then((res) => res.json())
+        .then((data) => {
+            dispatch(searchMoveis(data.Search));
+        })
+        .catch((err) => console.log(err));
     };
 }
 
@@ -56,16 +102,6 @@ export function postList(title, favoritesIDArray) {
     };
 }
 
-export function getListIntoState(title, movies) {
-    return {
-        type: "GET_LIST_INTO_STATE",
-        payload: {
-            title: title,
-            listMovies: movies,
-        },
-    };
-}
-
 export function getList(id) {
     return function (dispatch) {
         fetch(`https://acb-api.algoritmika.org/api/movies/list/${id}`)
@@ -73,40 +109,6 @@ export function getList(id) {
         .then((data) => {
             dispatch(getListIntoState(data.title, data.movies));
             dispatch(getMovieInfoByImdbID(data.movies));
-        })
-        .catch((err) => console.log(err));
-    };
-}
-export function getMovieInfoToState(movieDetails) {
-    return {
-        type: "GET_MOVIE_INFO_INTO_STATE",
-        payload: {
-            movieDetails: movieDetails,
-        },
-    };
-}
-export function getMovieInfoByImdbID(movies) {
-    return function (dispatch) {
-        let movieDetailsArray = [];
-        movies.forEach((e) => {
-            fetch(`http://www.omdbapi.com/?i=${e}&apikey=8d1d9e0f`)
-            .then((res) => res.json())
-            .then((data) => {
-                movieDetailsArray = [...movieDetailsArray, { ...data }];
-                dispatch(getMovieInfoToState(movieDetailsArray));
-            })
-            .catch((err) => console.log(err));
-        });
-    };
-}
-
-export function fetchMovies(name) {
-    return function (dispatch) {
-        const apiKey = "8d1d9e0f";
-        fetch(`http://www.omdbapi.com/?s=${name}&apikey=${apiKey}`)
-        .then((res) => res.json())
-        .then((data) => {
-            dispatch(searchMoveis(data.Search));
         })
         .catch((err) => console.log(err));
     };

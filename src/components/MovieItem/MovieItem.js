@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./MovieItem.css";
 import { addFavoriteList } from "../../redux/actions/actions";
 import { connect } from "react-redux";

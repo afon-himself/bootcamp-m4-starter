@@ -40,6 +40,7 @@ function Favorites(props) {
             document.querySelector(`.main-page__favorites`).querySelector(".favorites__save").style.cursor = "pointer";
         }
     };
+    //HELPED
 
     return (
         <div className="favorites">
